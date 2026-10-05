@@ -279,3 +279,25 @@ form-input:focus,
     width: 100%;
   }
 }
+
+/* Navbar responsive navigation utilities */
+@media (max-width: 860px) {
+  .desktop-nav,
+  .desktop-cta {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: flex !important;
+  }
+}
+@media (min-width: 861px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+  .desktop-cta {
+    display: flex !important;
+  }
+  .mobile-toggle {
+    display: none !important;
+  }
+}

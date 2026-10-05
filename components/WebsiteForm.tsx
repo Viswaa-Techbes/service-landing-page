@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
-import { Globe, Building, Layout, Server, Link, Sliders } from 'lucide-react';
+import { Globe, Building, Layout, Server, Link as LinkIcon, Sliders } from 'lucide-react';
 import {
   WebsiteDetails,
   WebsiteRequirementType,
@@ -36,9 +36,9 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
   ];
 
   return (
-    <div style:{{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       
-      {{/* Requirement Type */}
+      {/* Requirement Type */}
       <div className="form-group">
         <label className="form-label">
           <Sliders size={16} color="#0284c7" />
@@ -58,11 +58,11 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
         </div>
       </div>
 
-      {{/* Business Name & Number of Pages in 2 columns */}
-      <div style:{{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+      {/* Business Name & Number of Pages in 2 columns */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
         
         {/* Business / Company Name */}
-        <div className="form-group" style?{{ marginBottom: 0 }}>
+        <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">
             <Building size={16} color="#0284c7" />
             <span>Business / Company Name</span>
@@ -76,8 +76,8 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
           />
         </div>
 
-        {{/* Number of Pages */}
-        <div className="form-group" style?{{ marginBottom: 0 }}>
+        {/* Number of Pages */}
+        <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">
             <Layout size={16} color="#0284c7" />
             <span>Estimated Number of Pages</span>
@@ -92,17 +92,16 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
         </div>
       </div>
 
-
       {/* Domain & Hosting in 2 columns */}
-      <div style?{{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
         
-        {{/* Domain */}
-        <div className="form-group" style?{{ marginBottom: 0 }}>
+        {/* Domain */}
+        <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">
             <Globe size={16} color="#0284c7" />
             <span>Domain Status</span>
           </label>
-          <div style?{{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
             {domainOptions.map((opt) => (
               <button
                 key={opt}
@@ -117,12 +116,12 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
         </div>
 
         {/* Hosting */}
-        <div className="form-group" style?{{ marginBottom: 0 }}>
+        <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">
             <Server size={16} color="#0284c7" />
             <span>Hosting Status</span>
           </label>
-          <div style?{{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
             {hostingOptions.map((opt) => (
               <button
                 key={opt}
@@ -140,13 +139,13 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
       {/* Reference Website */}
       <div className="form-group">
         <label className="form-label">
-          <Link size={16} color="#0284c7" />
+          <LinkIcon size={16} color="#0284c7" />
           <span>Reference / Competitor Website</span>
-          <span style?{{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
+          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
         </label>
         <input
           type="text"
-          placeholder="e.g. https://example.com or names of sites whose layout you admire"
+          placeholder="e.g. https://example.com or competitor site you like"
           value={data.referenceWebsite || ''}
           onChange={(e) => onChange({ referenceWebsite: e.target.value })}
           className="form-input"
@@ -154,10 +153,10 @@ export default function WebsiteForm({ data, onChange }: WebsiteFormProps) {
       </div>
 
       {/* Additional Requirements */}
-      <div className="form-group" style:{{ marginBottom: 0 }}>
+      <div className="form-group" style={{ marginBottom: 0 }}>
         <label className="form-label">
           <span>Website Goals, Features & Notes</span>
-          <span style?{{ fontSize: '0.8rem', color: 'var(--text-muted)',&ontWeeight: 400 }}>(Optional)</span>
+          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
         </label>
         <textarea
           rows={3}

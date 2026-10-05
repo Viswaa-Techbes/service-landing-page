@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
-import { CheckCircle2, MessageCircle, RotateCcw, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, MessageCircle, RotateCcw } from 'lucide-react';
 import { EnquiryState } from '@/types/enquiry';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
@@ -19,8 +19,8 @@ export default function SuccessState({ enquiry, onNewEnquiry }: SuccessStateProp
   };
 
   return (
-    <div className="card" style:{{
-      padding: '3.5rem 2rm',
+    <div className="card" style={{
+      padding: '3.5rem 2rem',
       textAlign: 'center',
       maxWidth: '680px',
       margin: '0 auto',
@@ -28,7 +28,7 @@ export default function SuccessState({ enquiry, onNewEnquiry }: SuccessStateProp
       boxShadow: '0 12px 35px -5px rgba(16, 185, 129, 0.18)',
       borderRadius: 'var(--radius-lg)'
     }}>
-      <div style?{{
+      <div style={{
         width: '80px',
         height: '80px',
         borderRadius: '50%',
@@ -39,4 +39,47 @@ export default function SuccessState({ enquiry, onNewEnquiry }: SuccessStateProp
         justifyContent: 'center',
         margin: '0 auto 1.5rem auto'
       }}>
-        <CheckCircle2 size=z�����7G&��Uv�GF�׳"�W�����F�cࠢ�F�b7G��S����&v��&�GF�Ӣs�sW&V�r����7�6�74��S�&&FvR"7G��S���&6�w&�V�D6���#�r6V6fFcRr�6���#�r3Cs�Srr���V�V�'�6��f�&�V@���7����F�cࠢƃ"7G��S���f��E6��S�s�&V�r�f��EvV�v�C���6���#�wf"���6V6��F'��r��&v��&�GF�Ӣs�sW&V�r���F����R��V�V�'��6������gV����R��uf�VVB7W7F��W"w�����#ࠢ�7G��S���f��E6��S�s�W&V�r�6���#�wf"���FW�B��WFVB�r�Ɩ�T�V�v�C��b��&v��&�GF�Ӣs'&V�r�����W"V�V�'�f�"�7G&��r7G��S���6���#�wf"���6V6��F'��r���6W'f�6T��W5�V�V�'��6W'f�6U����7G&��s��2&VV�&V6V�fVB��W"V�v��VW&��r7V6�Ɨ7Bv���&Wf�Wr��W"&WV�&V�V�G2�B6��F7B��RB�7G&��r7G��S���6���#�wf"���6V6��F'��r���V�V�'��6��������&��T�V�&W'���7G&��s�v�F���3֖�WFW2���ࠢ��5D'WGF��2��Т�F�b7G��S���F�7���vf�W�r�f�W�w&�ww&r�Ɩv�FV�3�v6V�FW"r��W7F�g�6��FV�C�v6V�FW"r�v�s&V�r������&Vc׷vW&�ТF&vWC�%�&�� �&V��&���V�W"��&VfW'&W" �6�74��S�&'F�'F��v�G6 �7G��S���FF��s�s�W&V��sW&V�r�f��E6��S�s&V�r�����W76vT6�&6�R6��S׳#����7��6��F��VR��v�G4��7����ࠢ�'WGF��G�S�&'WGF�� ���6Ɩ6�׶���WtV�V�'�Т6�74��S�&'F�'F���WFƖ�R �7G��S���FF��s�s�W&V��sW&V�r�f��E6��S�s&V�r����&�FFT67r6��S�ǳ�����7��7V&֗B��F�W"V�V�'���7����'WGF�����F�c���F�c����Р
+        <CheckCircle2 size={48} strokeWidth={2.5} />
+      </div>
+
+      <div style={{ marginBottom: '0.75rem' }}>
+        <span className="badge" style={{ backgroundColor: '#ecfdf5', color: '#047857' }}>
+          Enquiry Registered
+        </span>
+      </div>
+
+      <h2 style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--secondary)', marginBottom: '0.75rem' }}>
+        Thank You, {enquiry.common.fullName || 'Valued Customer'}!
+      </h2>
+
+      <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '2rem' }}>
+        Your enquiry for <strong style={{ color: 'var(--secondary)' }}>{serviceNames[enquiry.service]}</strong> has been recorded.
+        Our engineering specialist will review your requirements and reach out to you at <strong style={{ color: 'var(--secondary)' }}>{enquiry.common.mobileNumber}</strong> shortly.
+      </p>
+
+      {/* Action Buttons */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-whatsapp"
+          style={{ padding: '0.95rem 1.75rem', fontSize: '1rem' }}
+        >
+          <MessageCircle size={20} />
+          <span>Continue on WhatsApp</span>
+        </a>
+
+        <button
+          type="button"
+          onClick={onNewEnquiry}
+          className="btn btn-outline"
+          style={{ padding: '0.95rem 1.75rem', fontSize: '1rem' }}
+        >
+          <RotateCcw size={18} />
+          <span>Submit Another Enquiry</span>
+        </button>
+      </div>
+    </div>
+  );
+}

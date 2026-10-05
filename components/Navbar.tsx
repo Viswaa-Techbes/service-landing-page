@@ -52,7 +52,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav">
+        <nav style={{ display: 'none', alignItems: 'center', gap: '2rem' }} className="desktop-nav">
           <a href="#services" style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-main)' }}>Services</a>
           <a href="#enquiry-section" style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-main)' }}>Instant Enquiry</a>
           <a href="#why-choose-us" style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-main)' }}>Why TechBes</a>
@@ -60,7 +60,7 @@ export default function Navbar() {
         </nav>
 
         {/* CTA Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }} className="desktop-cta">
+        <div style={{ display: 'none', alignItems: 'center', gap: '0.875rem' }} className="desktop-cta">
           <a
             href={waUrl}
             target="_blank"
@@ -111,18 +111,6 @@ export default function Navbar() {
           </a>
         </div>
       )}
-
-      <style jsx>{`
-        @media (max-width: 860px) {
-          .desktop-nav,
-          .desktop-cta {
-            display: none !important;
-          }
-          .mobile-toggle {
-            display: flex !important;
-          }
-        }
-      `}</style>
     </header>
   );
 }

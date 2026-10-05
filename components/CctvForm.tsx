@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
-import { Camera, HardDrive, Cpu, ShieldAlert, Sliders } from 'lucide-react';
+import { Camera, HardDrive, Cpu, Sliders } from 'lucide-react';
 import {
   CctvDetails,
   CctvRequirementType,
@@ -40,7 +40,7 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
     'Not Sure'
   ];
 
-  const recordingOptions: CctvRecordingu] = [
+  const recordingOptions: CctvRecording[] = [
     'DVR',
     'NVR',
     'Cloud',
@@ -48,7 +48,7 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
   ];
 
   return (
-    <div style?{{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       
       {/* Requirement Type */}
       <div className="form-group">
@@ -84,14 +84,14 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
               onClick={() => onChange({ numberOfCameras: cnt })}
               className={`pill-btn ${data.numberOfCameras === cnt ? 'active' : ''}`}
             >
-              {cnt === 'Custom' ? 'Custom Count' : `${cnt} ${cnt === '1' ? 'Camera' : 'Cameras'}`
+              {cnt === 'Custom' ? 'Custom Count' : `${cnt} ${cnt === '1' ? 'Camera' : 'Cameras'}`}
             </button>
           ))}
         </div>
 
         {/* Custom Count Input */}
         {data.numberOfCameras === 'Custom' && (
-          <div style:{{ marginTop: '0.75rem' }}>
+          <div style={{ marginTop: '0.75rem' }}>
             <input
               type="text"
               placeholder="Enter custom camera count (e.g. 24 or 32)"
@@ -104,21 +104,21 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
       </div>
 
       {/* Camera Type & Technology in 2 columns */}
-      <div style:{{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
         
         {/* Camera Type */}
-        <div className="form-group" style?{{ marginBottom: 0 }}>
+        <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">
             <Camera size={16} color="var(--primary)" />
             <span>Camera Placement / Type</span>
           </label>
-          <div style?{{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
             {cameraTypes.map((type) => (
               <button
                 key={type}
                 type="button"
                 onClick={() => onChange({ cameraType: type })}
-                className?{ppill-btn ${data.cameraType === type ? 'active' : ''}}}
+                className={`pill-btn ${data.cameraType === type ? 'active' : ''}`}
               >
                 {type}
               </button>
@@ -127,18 +127,18 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
         </div>
 
         {/* Camera Technology */}
-        <div className="form-group" style?{{ marginBottom: 0 }}>
+        <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">
             <Cpu size={16} color="var(--primary)" />
             <span>Camera Technology</span>
           </label>
-          <div style:{{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
             {technologies.map((tech) => (
               <button
                 key={tech}
                 type="button"
                 onClick={() => onChange({ cameraTechnology: tech })}
-                className?{ppill-btn ${data.cameraTechnology === tech ? 'active' : ''}}}
+                className={`pill-btn ${data.cameraTechnology === tech ? 'active' : ''}`}
               >
                 {tech}
               </button>
@@ -147,7 +147,7 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
         </div>
       </div>
 
-      {{/* Recording */}
+      {/* Recording */}
       <div className="form-group">
         <label className="form-label">
           <HardDrive size={16} color="var(--primary)" />
@@ -167,11 +167,11 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
         </div>
       </div>
 
-      {{/* Cable Length */}
+      {/* Cable Length */}
       <div className="form-group">
         <label className="form-label">
           <span>Estimated Cable Length</span>
-          <span style:{{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeeight: 400 }}>(Optional)</span>
+          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
         </label>
         <input
           type="text"
@@ -183,14 +183,14 @@ export default function CctvForm({ data, onChange }: CctvFormProps) {
       </div>
 
       {/* Additional Requirements */}
-      <div className="form-group" style?{{ marginBottom: 0 }}>
+      <div className="form-group" style={{ marginBottom: 0 }}>
         <label className="form-label">
           <span>Additional CCTV Requirements / Site Details</span>
-          <span style:{{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeeight: 400 }}>(Optional)</span>
+          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
         </label>
         <textarea
           rows={3}
-          placeholder="e.g. Need audio recording, number of days storage required, mobile app setup..."
+          placeholder="e.g. Need audio recording, number of days storage required, high-zoom lens for parking lot, mobile app setup..."
           value={data.additionalRequirements || ''}
           onChange={(e) => onChange({ additionalRequirements: e.target.value })}
           className="form-textarea"
