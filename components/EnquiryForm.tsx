@@ -1,6 +1,6 @@
-'use client';
+﻿'use client';
 
-import React, { wastState } from 'react';
+import React, { useState } from 'react';
 import {
   User,
   Phone,
@@ -9,9 +9,7 @@ import {
   Calendar,
   Clock,
   ArrowRight,
-  Shield,
-  CheckCircle2,
-  AlertCircle
+  Shield
 } from 'lucide-react';
 import {
   ServiceType,
@@ -33,9 +31,9 @@ interface EnquiryFormProps {
 }
 
 export default function EnquiryForm({ activeService, onServiceChange }: EnquiryFormProps) {
-  const [step, setStep] = React.useState<'form' | 'summary' | 'success'>('form');
+  const [step, setStep] = useState<'form' | 'summary' | 'success'>('form');
 
-  const [common, setCommon] = React.useState<CommonDetails>({
+  const [common, setCommon] = useState<CommonDetails>({
     fullName: '',
     mobileNumber: '',
     email: '',
@@ -44,17 +42,17 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
     preferredTime: 'Morning (09:00 AM - 12:00 PM)'
   });
 
-  const [cctv, setCctv] = React.useState<CctvDetails>({
+  const [cctv, setCctv] = useState<CctvDetails>({
     requirementType: 'New Installation',
     numberOfCameras: '4',
     cameraType: 'Both',
     cameraTechnology: 'IP Camera',
-    recording: 'NUR',
+    recording: 'NVR',
     cableLength: '',
     additionalRequirements: ''
   });
 
-  const [networking, setNetworking] = React.useState<NetworkingDetails>({
+  const [networking, setNetworking] = useState<NetworkingDetails>({
     requirementType: 'New Setup',
     propertyType: 'Office',
     numberOfRooms: '',
@@ -63,7 +61,7 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
     additionalRequirements: ''
   });
 
-  const [website, setWebsite] = React.useState<WebsiteDetails>({
+  const [website, setWebsite] = useState<WebsiteDetails>({
     requirementType: 'New Website',
     businessName: '',
     numberOfPages: '5 Pages',
@@ -73,7 +71,7 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
     additionalRequirements: ''
   });
 
-��ۜ��\��ܜ��]\��ܜ�HH�XX��\�T�]O�X�ܙ��[����[�Ϗ��JN�
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
     const errs: Record<string, string> = {};
@@ -113,11 +111,11 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
   ];
 
   return (
-    <section id="enquiry-section" style?{{ padding: '5rem 0', backgroundColor: 'var(--bg-page)' }}>
-      <div className="container" style?{{ maxWidth: '960px' }}>
+    <section id="enquiry-section" style={{ padding: '5rem 0', backgroundColor: 'var(--bg-page)' }}>
+      <div className="container" style={{ maxWidth: '960px' }}>
         
-        {{/* Section Heading */}
-        <div className="section-head" style?{{ marginBottom: '2.5rem' }}>
+        {/* Section Heading */}
+        <div className="section-head" style={{ marginBottom: '2.5rem' }}>
           <span className="badge badge-orange">Dynamic Quotation & Consultation</span>
           <h2 className="section-title">Configure Your Service Enquiry</h2>
           <p className="section-subtitle">
@@ -148,7 +146,7 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
             enquiry={currentEnquiryState}
             onEdit={() => setStep('form')}
             onSubmit={() => {
-              setStep('successsg);
+              setStep('success');
               const el = document.getElementById('enquiry-section');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
@@ -156,18 +154,18 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
         )}
 
         {step === 'form' && (
-          <div className="card" style:{{
+          <div className="card" style={{
             padding: '2.5rem',
             backgroundColor: '#ffffff',
             boxShadow: 'var(--shadow-md)',
             borderRadius: 'var(--radius-xl)'
           }}>
             {/* Quick Service Switcher Tabs */}
-            <div style?{{ marginBottom: '2.25rem' }}>
-              <div style:{{ fontSize: '0.85rem', fontWeeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.75rem' }}>
+            <div style={{ marginBottom: '2.25rem' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.75rem' }}>
                 Selected Service Form:
               </div>
-              <div style?{{
+              <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
                 gap: '0.75rem'
@@ -178,7 +176,7 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                     type="button"
                     onClick={() => onServiceChange(btn.id)}
                     className={`pill-btn ${activeService === btn.id ? 'active' : ''}`}
-                    style:{{ padding: '0.85rem 1rem', fontSize: '0.95rem' }}>
+                    style={{ padding: '0.85rem 1rem', fontSize: '0.95rem' }}
                   >
                     {btn.title}
                   </button>
@@ -186,29 +184,40 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
               </div>
             </div>
 
-
             {/* The Form */}
-            <form onSubmit=t{handleReview}>
+            <form onSubmit={handleReview}>
               
               {/* Common Details Card Area */}
-              <div style?{{ marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1.5px dashed var(--border-subtle)' }}>
-                <div style?{{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.15rem', fontWeight: 700, color: 'var(--secondary)', marginBottom: '1.25rem' }}>
+              <div style={{
+                marginBottom: '2rem',
+                paddingBottom: '2rem',
+                borderBottom: '1.5px dashed var(--border-subtle)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  color: 'var(--secondary)',
+                  marginBottom: '1.25rem'
+                }}>
                   <User size={20} color="var(--primary)" />
                   <span>1. Contact & Site Details</span>
                 </div>
 
                 {/* Name & Mobile in 2 columns */}
-                <div style?{{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
                   <div className="form-group">
                     <label className="form-label">
                       <span>Full Name</span>
-                      <span style?{{ color: '#ef4444' }}>*</span>
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. Ramesh Kumar"
                       value={common.fullName}
-                      onChange:{(e) => {
+                      onChange={(e) => {
                         setCommon({ ...common, fullName: e.target.value });
                         if (errors.fullName) setErrors({ ...errors, fullName: '' });
                       }}
@@ -220,13 +229,13 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                   <div className="form-group">
                     <label className="form-label">
                       <span>Mobile Number</span>
-                      <span style?{{ color: '#ef4444' }}>*</span>
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <input
                       type="tel"
                       placeholder="e.g. +91 98765 43210"
                       value={common.mobileNumber}
-                      onChange:{(e) => {
+                      onChange={(e) => {
                         setCommon({ ...common, mobileNumber: e.target.value });
                         if (errors.mobileNumber) setErrors({ ...errors, mobileNumber: '' });
                       }}
@@ -237,17 +246,17 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                 </div>
 
                 {/* Email & Location in 2 columns */}
-                <div style:{{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
                   <div className="form-group">
                     <label className="form-label">
                       <span>Email Address</span>
-                      <span style?{{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 400 }}>(Optional)</span>
                     </label>
                     <input
                       type="email"
                       placeholder="e.g. ramesh@example.com"
                       value={common.email}
-                      onChange:{(e) => setCommon({ ...common, email: e.target.value })}
+                      onChange={(e) => setCommon({ ...common, email: e.target.value })}
                       className="form-input"
                     />
                   </div>
@@ -255,13 +264,13 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                   <div className="form-group">
                     <label className="form-label">
                       <span>Location / Area / City</span>
-                      <span style?{{ color: '#ef4444' }}>*</span>
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. Indiranagar, Bengaluru"
                       value={common.location}
-                      onChange:{(e) => {
+                      onChange={(e) => {
                         setCommon({ ...common, location: e.target.value });
                         if (errors.location) setErrors({ ...errors, location: '' });
                       }}
@@ -272,8 +281,8 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                 </div>
 
                 {/* Date & Time in 2 columns */}
-                <div style?{{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
-                  <div className="form-group" style?{{ marginBottom: 0 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">
                       <Calendar size={16} color="var(--primary)" />
                       <span>Preferred Date for Survey / Call</span>
@@ -281,19 +290,19 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                     <input
                       type="date"
                       value={common.preferredDate}
-                      onChange:{(e) => setCommon({ ...common, preferredDate: e.target.value })}
+                      onChange={(e) => setCommon({ ...common, preferredDate: e.target.value })}
                       className="form-input"
                     />
                   </div>
 
-                  <div className="form-group" style:{{ marginBottom: 0 }}>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">
                       <Clock size={16} color="var(--primary)" />
                       <span>Preferred Time Slot</span>
                     </label>
                     <select
                       value={common.preferredTime}
-                      onChange:{(e) => setCommon({ ...common, preferredTime: e.target.value })}
+                      onChange={(e) => setCommon({ ...common, preferredTime: e.target.value })}
                       className="form-select"
                     >
                       <option value="Morning (09:00 AM - 12:00 PM)">Morning (09:00 AM - 12:00 PM)</option>
@@ -306,8 +315,8 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
               </div>
 
               {/* Dynamic Service Specific Section */}
-              <div style?{{ marginBottom: '2.5rem' }}>
-                <div style?{{
+              <div style={{ marginBottom: '2.5rem' }}>
+                <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
@@ -320,11 +329,34 @@ export default function EnquiryForm({ activeService, onServiceChange }: EnquiryF
                   <span>2. Specific Requirements: {activeService === 'cctv' ? 'CCTV' : activeService === 'networking' ? 'Networking' : 'Website'}</span>
                 </div>
 
-                {euctiveService === 'cctv' && (
+                {activeService === 'cctv' && (
                   <CctvForm data={cctv} onChange={(upd) => setCctv({ ...cctv, ...upd })} />
                 )}
 
-��]X�]�T�\��X�HOOH	ۙ]�ܚ�[���	��
-��]�ܚ�[�ћܛH]O^ۙ]�ܚ�[��Hې�[��O^�\
-HO��]�]�ܚ�[�������]�ܚ�[�����\J_Hς�
-_B���WV7F�fU6W'f�6R���wvV'6�FRrbb���vV'6�FTf�&�FF׷vV'6�FW���6��vSײ�WB���6WEvV'6�FR�����vV'6�FR����WBҗ����Т��F�cࠠ���&Wf�Wr'WGF����Т�F�b7G��S���F�7���vf�W�r��W7F�g�6��FV�C�vf�W��V�Br����'WGF��G�S�'7V&֗B �6�74��S�&'F�'F��&��'� �7G��S���FF��s�s�W&V�"�#W&V�r�f��E6��S�s�W&V�r�֖�v�GF��s#C�r�Т��7��&Wf�WrV�V�'�FWF��3��7���'&�u&�v�B6��S׳������'WGF�����F�c���f�&����F�c��Т��F�c���6V7F��������
+                {activeService === 'networking' && (
+                  <NetworkingForm data={networking} onChange={(upd) => setNetworking({ ...networking, ...upd })} />
+                )}
+
+                {activeService === 'website' && (
+                  <WebsiteForm data={website} onChange={(upd) => setWebsite({ ...website, ...upd })} />
+                )}
+              </div>
+
+              {/* Review Button */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ padding: '0.95rem 2.25rem', fontSize: '1.05rem', minWidth: '240px' }}
+                >
+                  <span>Review Enquiry Details</span>
+                  <ArrowRight size={19} />
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
